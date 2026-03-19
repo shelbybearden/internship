@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDWFP Internship Program</title>
+  <meta name="description" content="Apply for the Mississippi Department of Wildlife, Fisheries, and Parks Internship Program." />
+  <style>
+    :root {
+      --bg: #f5f7f8;
+      --surface: #ffffff;
+      --surface-2: #eef3f1;
+      --text: #17302b;
+      --muted: #5e726c;
+      --primary: #1f5f4a;
+      --primary-dark: #164636;
+      --accent: #c8a24a;
+      --border: #d7dfdc;
+      --danger: #a62a2a;
+      --success: #1f7a43;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fbfa 0%, #eef3f1 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--primary); }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(calc(100% - 2rem), var(--max)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.9);
+      border-bottom: 1px solid rgba(215,223,220,.85);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+    .brand { display: flex; align-items: center; gap: .9rem; font-weight: 800; }
+    .brand-mark {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+      color: white; display: grid; place-items: center; font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+    .nav-links { display: flex; gap: .3rem; flex-wrap: wrap; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); padding: .75rem .95rem; border-radius: 999px; font-weight: 600;
+    }
+    .nav-links a:hover, .nav-links a:focus { background: var(--surface-2); outline: none; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .95rem 1.2rem; border-radius: 14px; font-weight: 700; text-decoration: none;
+      border: 1px solid transparent; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover, .btn-primary:focus { background: var(--primary-dark); }
+    .btn-secondary { background: #fff; border-color: var(--border); color: var(--text); }
+    .btn-secondary:hover, .btn-secondary:focus { background: var(--surface-2); }
+
+    .hero { padding: 4.5rem 0 2.5rem; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.15fr .85fr; gap: 1.5rem; align-items: stretch;
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-copy { padding: 2rem; }
+    .eyebrow {
+      display: inline-block; padding: .4rem .7rem; border-radius: 999px;
+      background: #e7f1ed; color: var(--primary); font-size: .85rem; font-weight: 800; letter-spacing: .02em;
+      margin-bottom: .9rem;
+    }
+    h1, h2, h3 { line-height: 1.15; margin: 0 0 .8rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3.75rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.3rem); }
+    h3 { font-size: 1.1rem; }
+    p.lead { font-size: 1.08rem; color: var(--muted); max-width: 62ch; }
+    .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.25rem; }
+
+    .hero-side {
+      padding: 1.4rem; display: grid; gap: 1rem; background: linear-gradient(145deg, #17302b, #24463d); color: white;
+    }
+    .deadline-list, .check-list { margin: 0; padding-left: 1.2rem; }
+    .hero-side small, .hero-side p { color: rgba(255,255,255,.86); }
+    .deadline-box {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 1rem;
+    }
+
+    section { padding: 1.3rem 0 2.2rem; }
+    .section-head { margin-bottom: 1rem; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .feature { padding: 1.2rem; }
+    .feature p { color: var(--muted); margin: 0; }
+
+    .notice {
+      border-left: 4px solid var(--accent); background: #fff9ed; padding: 1rem 1rem 1rem 1.1rem; border-radius: 12px;
+      color: #5a4b1b; margin-top: 1rem;
+    }
+
+    .page-panel { padding: 1.4rem; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+    .field { display: grid; gap: .45rem; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-weight: 700; font-size: .95rem; }
+    .req { color: var(--danger); }
+    input, select, textarea {
+      width: 100%; padding: .88rem 1rem; border: 1px solid var(--border); border-radius: 12px;
+      background: #fff; font: inherit; color: var(--text);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid rgba(31,95,74,.15); border-color: var(--primary);
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .hint { color: var(--muted); font-size: .88rem; }
+    .checkbox, .radio-group { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
+    .checkbox input, .radio-group input { width: auto; }
+    .inline-options { display: grid; gap: .55rem; }
+    .upload-box {
+      border: 1.5px dashed var(--border); border-radius: 12px; padding: 1rem; background: #fbfcfc;
+    }
+    .status {
+      margin-top: 1rem; padding: .9rem 1rem; border-radius: 12px; display: none;
+    }
+    .status.error { display: block; background: #fff2f2; color: #802626; border: 1px solid #efc7c7; }
+    .status.success { display: block; background: #effaf2; color: #14542d; border: 1px solid #c5e8cf; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .4rem; border-radius: 999px; background: #edf6f2;
+      padding: .45rem .75rem; color: var(--primary); font-weight: 700; font-size: .9rem;
+    }
+    .muted { color: var(--muted); }
+    .footer { padding: 2rem 0 3rem; color: var(--muted); }
+    .footer-box { padding: 1.3rem; }
+    .small { font-size: .88rem; }
+    .sr-only {
+      position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .logo-slot {
+      border: 1.5px dashed rgba(255,255,255,.25); border-radius: 16px; padding: 1rem;
+      min-height: 120px; display: grid; place-items: center; text-align: center;
+      color: rgba(255,255,255,.8);
+    }
+    .table-like { display: grid; gap: .75rem; }
+
+    @media (max-width: 920px) {
+      .hero-grid, .grid-3, .grid-2, .form-grid { grid-template-columns: 1fr; }
+      .nav { align-items: start; padding: .65rem 0; }
+      .nav-links { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">M</div>
+        <div>
+          <div>MDWFP Internship Program</div>
+          <div class="small muted">Mississippi Department of Wildlife, Fisheries, and Parks</div>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#information">Information</a>
+        <a href="#apply">Apply</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-copy">
+          <span class="eyebrow">Public Application Portal</span>
+          <h1>Apply to the MDWFP Internship Program</h1>
+          <p class="lead">
+            Submit your application materials to the Mississippi Department of Wildlife, Fisheries, and Parks.
+            This portal is designed for qualified candidates seeking internship opportunities across MDWFP bureaus and regional locations.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#apply">Start Application</a>
+            <a class="btn btn-secondary" href="#information">Program Information</a>
+          </div>
+          <div class="notice" role="note">
+            This single-file site is designed for Cloudflare Pages. To make document uploads, admin retention, CSV export, and email notifications fully operational,
+            connect the included form to a backend endpoint such as a Cloudflare Worker + R2/D1, Google Apps Script, or another form service.
+          </div>
+        </div>
+        <aside class="card hero-side" aria-label="Program details">
+          <div class="logo-slot">
+            <div>
+              <strong>Logo placeholder</strong><br />
+              Replace this section with your MDWFP logo image.
+            </div>
+          </div>
+          <div class="deadline-box">
+            <h3>Application terms</h3>
+            <ul class="deadline-list">
+              <li>Spring term deadline: November 1</li>
+              <li>Summer term deadline: March 15</li>
+              <li>Fall term deadline: May 1</li>
+            </ul>
+          </div>
+          <div class="deadline-box">
+            <h3>Submission requirements</h3>
+            <ul class="check-list">
+              <li>Resume</li>
+              <li>Letter of intent</li>
+              <li>Letter of recommendation</li>
+              <li>Transcript</li>
+            </ul>
+            <small>Accepted formats: PDF, DOC, DOCX</small>
+          </div>
+          <div class="pill" id="termStatusPill">Current term status: Loading…</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="information">
+      <div class="container">
+        <div class="section-head">
+          <h2>Program Information</h2>
+          <p class="lead">This section is drafted from the details you provided and can be finalized once you confirm your eligibility rules, privacy language, and bureau options.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature">
+            <h3>Who should apply</h3>
+            <p>Students and qualified candidates interested in wildlife, fisheries, parks, conservation, public service, law enforcement support, natural resource management, and related fields.</p>
+          </article>
+          <article class="card feature">
+            <h3>What to submit</h3>
+            <p>Complete the application form and upload a resume, letter of intent, recommendation letter, and transcript in PDF, DOC, or DOCX format.</p>
+          </article>
+          <article class="card feature">
+            <h3>How selections may be evaluated</h3>
+            <p>Applications may be reviewed based on academic background, program fit, stated interests, bureau preferences, communication skills, and submitted materials.</p>
+          </article>
+        </div>
+        <div class="grid-2" style="margin-top: 1rem;">
+          <article class="card page-panel">
+            <h3>Important dates</h3>
+            <div class="table-like">
+              <div><strong>Spring:</strong> submit by November 1</div>
+              <div><strong>Summer:</strong> submit by March 15</div>
+              <div><strong>Fall:</strong> submit by May 1</div>
+            </div>
+            <p class="hint">These dates are shown without a year. The site logic uses the next upcoming annual deadline based on the visitor’s local date.</p>
+          </article>
+          <article class="card page-panel">
+            <h3>Items still needing your final approval</h3>
+            <ul>
+              <li>Eligibility rules and minimum qualifications</li>
+              <li>Privacy and records retention language</li>
+              <li>Final bureau and regional location options</li>
+              <li>Email confirmation wording for applicants</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="container">
+        <div class="section-head">
+          <h2>Application Submission</h2>
+          <p class="lead">Applicants can complete the form below and upload all required documents. Required fields are marked with <span class="req">*</span>.</p>
+        </div>
+        <div class="card page-panel">
+          <form id="applicationForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="fullName">Full name <span class="req">*</span></label>
+                <input id="fullName" name="fullName" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="phone">Phone number <span class="req">*</span></label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+              </div>
+              <div class="field">
+                <label for="address">Address <span class="req">*</span></label>
+                <input id="address" name="address" required autocomplete="street-address" />
+              </div>
+              <div class="field">
+                <label for="college">College <span class="req">*</span></label>
+                <input id="college" name="college" required />
+              </div>
+              <div class="field">
+                <label for="semesterHours">Completed semester hours <span class="req">*</span></label>
+                <input id="semesterHours" name="semesterHours" type="number" min="0" required />
+              </div>
+              <div class="field">
+                <label for="major">Major <span class="req">*</span></label>
+                <input id="major" name="major" required />
+              </div>
+              <div class="field">
+                <label for="gpa">GPA <span class="req">*</span></label>
+                <input id="gpa" name="gpa" type="number" min="0" max="4" step="0.01" required />
+              </div>
+              <div class="field full">
+                <label for="engagementFrequency">How frequently do you engage with an MDWFP employee (biologist or conservation officer)? <span class="req">*</span></label>
+                <select id="engagementFrequency" name="engagementFrequency" required>
+                  <option value="">Select an option</option>
+                  <option>Frequently</option>
+                  <option>Occasionally</option>
+                  <option>Rarely</option>
+                  <option>Never</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="missionUnderstanding">What is your overall understanding of MDWFP’s mission and purpose? <span class="req">*</span></label>
+                <textarea id="missionUnderstanding" name="missionUnderstanding" required></textarea>
+              </div>
+              <div class="field">
+                <label for="referenceNameTitle">Name and title of reference for letter of recommendation <span class="req">*</span></label>
+                <input id="referenceNameTitle" name="referenceNameTitle" required />
+              </div>
+              <div class="field">
+                <label for="academicCredit">Will you receive academic credit from your school if you participate in the program? <span class="req">*</span></label>
+                <select id="academicCredit" name="academicCredit" required>
+                  <option value="">Select an option</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                  <option>Not sure</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="appliedPreviously">Have you applied for the MDWFP program previously? <span class="req">*</span></label>
+                <select id="appliedPreviously" name="appliedPreviously" required>
+                  <option value="">Select an option</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="heardAbout">How did you hear about the program? <span class="req">*</span></label>
+                <input id="heardAbout" name="heardAbout" required />
+              </div>
+              <div class="field">
+                <label for="applicationTerm">Application term <span class="req">*</span></label>
+                <select id="applicationTerm" name="applicationTerm" required>
+                  <option value="">Select term</option>
+                  <option>Spring</option>
+                  <option>Summer</option>
+                  <option>Fall</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="bureaus">Bureaus of interest <span class="req">*</span></label>
+                <input id="bureaus" name="bureaus" placeholder="Example: Fisheries, Parks, Wildlife, Law Enforcement" required />
+              </div>
+              <div class="field">
+                <label for="regionalLocation">Regional location <span class="req">*</span></label>
+                <input id="regionalLocation" name="regionalLocation" placeholder="Enter preferred region/location" required />
+              </div>
+              <div class="field">
+                <label for="signature">Electronic signature <span class="req">*</span></label>
+                <input id="signature" name="signature" required placeholder="Type your full legal name" />
+              </div>
+              <div class="field">
+                <label for="signatureDate">Signature date <span class="req">*</span></label>
+                <input id="signatureDate" name="signatureDate" type="date" required />
+              </div>
+
+              <div class="field full upload-box">
+                <label for="resume">Resume <span class="req">*</span></label>
+                <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required />
+                <div class="hint">Upload PDF, DOC, or DOCX.</div>
+              </div>
+              <div class="field full upload-box">
+                <label for="letterIntent">Letter of intent <span class="req">*</span></label>
+                <input id="letterIntent" name="letterIntent" type="file" accept=".pdf,.doc,.docx" required />
+              </div>
+              <div class="field full upload-box">
+                <label for="letterRecommendation">Letter of recommendation <span class="req">*</span></label>
+                <input id="letterRecommendation" name="letterRecommendation" type="file" accept=".pdf,.doc,.docx" required />
+              </div>
+              <div class="field full upload-box">
+                <label for="transcript">Transcript <span class="req">*</span></label>
+                <input id="transcript" name="transcript" type="file" accept=".pdf,.doc,.docx" required />
+              </div>
+
+              <div class="field full">
+                <label class="checkbox">
+                  <input type="checkbox" id="consent" name="consent" required />
+                  <span>I certify that the information provided is true and complete to the best of my knowledge and I consent to the review of my application materials. <span class="req">*</span></span>
+                </label>
+              </div>
+              <div class="field full">
+                <label class="checkbox">
+                  <input type="checkbox" id="emailCopyRequested" name="emailCopyRequested" checked />
+                  <span>Send a confirmation email to the applicant email address provided above.</span>
+                </label>
+              </div>
+              <div class="field full sr-only" aria-hidden="true">
+                <label for="company">Company</label>
+                <input id="company" name="company" tabindex="-1" autocomplete="off" />
+              </div>
+              <div class="field full">
+                <div class="hint">
+                  Anti-spam ready: honeypot included. Optional Cloudflare Turnstile support can be enabled by adding your site key in the page script.
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top: 1.3rem;">
+              <button class="btn btn-primary" type="submit">Submit Application</button>
+              <button class="btn btn-secondary" type="button" id="saveDraftBtn">Save Draft in Browser</button>
+              <button class="btn btn-secondary" type="button" id="clearDraftBtn">Clear Draft</button>
+            </div>
+
+            <div id="applicationStatus" class="status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container grid-2">
+        <article class="card page-panel">
+          <h2>Contact Request</h2>
+          <p class="muted">Use this form for general questions about the internship program.</p>
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="contactName">Name <span class="req">*</span></label>
+                <input id="contactName" name="contactName" required />
+              </div>
+              <div class="field">
+                <label for="contactEmail">Email <span class="req">*</span></label>
+                <input id="contactEmail" name="contactEmail" type="email" required />
+              </div>
+              <div class="field full">
+                <label for="contactMessage">Message <span class="req">*</span></label>
+                <textarea id="contactMessage" name="contactMessage" required></textarea>
+              </div>
+              <div class="field full sr-only" aria-hidden="true">
+                <label for="website">Website</label>
+                <input id="website" name="website" tabindex="-1" autocomplete="off" />
+              </div>
+            </div>
+            <div class="hero-actions" style="margin-top: 1.3rem;">
+              <button class="btn btn-primary" type="submit">Send Contact Request</button>
+            </div>
+            <div id="contactStatus" class="status" role="status" aria-live="polite"></div>
+          </form>
+        </article>
+
+        <article class="card page-panel">
+          <h2>Contact Information</h2>
+          <p><strong>Organization:</strong><br />MS Department of Wildlife, Fisheries, and Parks</p>
+          <p><strong>Email:</strong><br /><a href="mailto:Internships@wfp.ms.gov">Internships@wfp.ms.gov</a></p>
+          <p><strong>Phone:</strong><br /><a href="tel:16014322400">601-432-2400</a></p>
+          <div class="notice">
+            For production use, connect the forms to your preferred submission backend and configure automated notifications to Internships@wfp.ms.gov.
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="card footer-box">
+        <strong>MDWFP Internship Program</strong>
+        <p class="small">This site is a Cloudflare-ready single HTML file. Update the configuration in the script section to connect uploads, admin retention, CSV export, and confirmation emails.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      // Replace with your real backend endpoint when ready.
+      // Expected to accept multipart/form-data for the application form.
+      applicationEndpoint: "",
+      contactEndpoint: "",
+      notifyEmail: "Internships@wfp.ms.gov",
+      // Optional Cloudflare Turnstile site key.
+      turnstileSiteKey: "",
+      maxFileSizeMb: 10,
+      allowedFileExtensions: ["pdf", "doc", "docx"]
+    };
+
+    const applicationForm = document.getElementById('applicationForm');
+    const contactForm = document.getElementById('contactForm');
+    const applicationStatus = document.getElementById('applicationStatus');
+    const contactStatus = document.getElementById('contactStatus');
+    const saveDraftBtn = document.getElementById('saveDraftBtn');
+    const clearDraftBtn = document.getElementById('clearDraftBtn');
+    const termStatusPill = document.getElementById('termStatusPill');
+    const DRAFT_KEY = 'mdwfp-internship-application-draft-v1';
+
+    function setStatus(element, kind, message) {
+      element.className = 'status ' + kind;
+      element.textContent = message;
+    }
+
+    function clearStatus(element) {
+      element.className = 'status';
+      element.textContent = '';
+    }
+
+    function validateFiles(form) {
+      const fileInputs = form.querySelectorAll('input[type="file"]');
+      for (const input of fileInputs) {
+        const file = input.files && input.files[0];
+        if (!file) return `${input.labels?.[0]?.innerText || 'A required file'} is missing.`;
+        const ext = (file.name.split('.').pop() || '').toLowerCase();
+        if (!CONFIG.allowedFileExtensions.includes(ext)) {
+          return `${file.name} is not an accepted file type. Allowed: ${CONFIG.allowedFileExtensions.join(', ').toUpperCase()}.`;
+        }
+        if (file.size > CONFIG.maxFileSizeMb * 1024 * 1024) {
+          return `${file.name} exceeds the ${CONFIG.maxFileSizeMb} MB file size limit.`;
+        }
+      }
+      return '';
+    }
+
+    function getNextDeadlineInfo() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const terms = [
+        { term: 'Summer', date: new Date(year, 2, 15, 23, 59, 59) },
+        { term: 'Fall', date: new Date(year, 4, 1, 23, 59, 59) },
+        { term: 'Spring', date: new Date(year, 10, 1, 23, 59, 59) }
+      ];
+      let next = terms.find(t => t.date > now);
+      if (!next) next = { term: 'Summer', date: new Date(year + 1, 2, 15, 23, 59, 59) };
+      const diffDays = Math.ceil((next.date - now) / (1000 * 60 * 60 * 24));
+      return { ...next, diffDays };
+    }
+
+    function updateTermStatus() {
+      const next = getNextDeadlineInfo();
+      termStatusPill.textContent = `Next deadline: ${next.term} term in ${next.diffDays} day${next.diffDays === 1 ? '' : 's'}`;
+    }
+
+    function saveDraft() {
+      const fields = Array.from(applicationForm.querySelectorAll('input:not([type="file"]):not([type="checkbox"]), select, textarea'));
+      const checkboxes = Array.from(applicationForm.querySelectorAll('input[type="checkbox"]'));
+      const data = {};
+      fields.forEach(el => data[el.name] = el.value);
+      checkboxes.forEach(el => data[el.name] = el.checked);
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+      setStatus(applicationStatus, 'success', 'Draft saved in this browser. Uploaded files are not stored in the browser draft.');
+    }
+
+    function loadDraft() {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+        Object.entries(data).forEach(([name, value]) => {
+          const el = applicationForm.elements[name];
+          if (!el) return;
+          if (el.type === 'checkbox') {
+            el.checked = Boolean(value);
+          } else {
+            el.value = value;
+          }
+        });
+      } catch (_) {}
+    }
+
+    function clearDraft() {
+      localStorage.removeItem(DRAFT_KEY);
+      applicationForm.reset();
+      document.getElementById('signatureDate').valueAsDate = new Date();
+      setStatus(applicationStatus, 'success', 'Saved draft cleared.');
+    }
+
+    async function handleApplicationSubmit(event) {
+      event.preventDefault();
+      clearStatus(applicationStatus);
+
+      if (applicationForm.company.value.trim() !== '') {
+        setStatus(applicationStatus, 'error', 'Spam protection triggered. Submission blocked.');
+        return;
+      }
+      if (!applicationForm.reportValidity()) {
+        setStatus(applicationStatus, 'error', 'Please complete all required fields before submitting.');
+        return;
+      }
+      const fileError = validateFiles(applicationForm);
+      if (fileError) {
+        setStatus(applicationStatus, 'error', fileError);
+        return;
+      }
+
+      const formData = new FormData(applicationForm);
+      formData.append('notifyEmail', CONFIG.notifyEmail);
+      formData.append('siteName', 'MDWFP Internship Program');
+      formData.append('submissionType', 'application');
+      formData.append('clientTimestamp', new Date().toISOString());
+
+      if (!CONFIG.applicationEndpoint) {
+        setStatus(
+          applicationStatus,
+          'success',
+          'Frontend validation passed. The site is ready, but no live backend endpoint is configured yet. Add your endpoint in CONFIG.applicationEndpoint to enable actual uploads, admin retention, CSV export, and email notifications.'
+        );
+        return;
+      }
+
+      try {
+        const response = await fetch(CONFIG.applicationEndpoint, {
+          method: 'POST',
+          body: formData
+        });
+        if (!response.ok) throw new Error('Submission failed.');
+        applicationForm.reset();
+        localStorage.removeItem(DRAFT_KEY);
+        document.getElementById('signatureDate').valueAsDate = new Date();
+        setStatus(applicationStatus, 'success', 'Application submitted successfully. A confirmation email will be sent if supported by the backend configuration.');
+      } catch (error) {
+        setStatus(applicationStatus, 'error', 'There was a problem submitting the application. Please try again later or contact Internships@wfp.ms.gov.');
+      }
+    }
+
+    async function handleContactSubmit(event) {
+      event.preventDefault();
+      clearStatus(contactStatus);
+
+      if (contactForm.website.value.trim() !== '') {
+        setStatus(contactStatus, 'error', 'Spam protection triggered. Message blocked.');
+        return;
+      }
+      if (!contactForm.reportValidity()) {
+        setStatus(contactStatus, 'error', 'Please complete all required contact fields.');
+        return;
+      }
+
+      const payload = Object.fromEntries(new FormData(contactForm).entries());
+      payload.notifyEmail = CONFIG.notifyEmail;
+      payload.submissionType = 'contact';
+      payload.clientTimestamp = new Date().toISOString();
+
+      if (!CONFIG.contactEndpoint) {
+        setStatus(contactStatus, 'success', 'Contact form is ready, but no live backend endpoint is configured yet. Add your endpoint in CONFIG.contactEndpoint to enable delivery.');
+        return;
+      }
+
+      try {
+        const response = await fetch(CONFIG.contactEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error('Contact request failed.');
+        contactForm.reset();
+        setStatus(contactStatus, 'success', 'Your contact request has been sent successfully.');
+      } catch (_) {
+        setStatus(contactStatus, 'error', 'There was a problem sending your message. Please try again later.');
+      }
+    }
+
+    saveDraftBtn.addEventListener('click', saveDraft);
+    clearDraftBtn.addEventListener('click', clearDraft);
+    applicationForm.addEventListener('submit', handleApplicationSubmit);
+    contactForm.addEventListener('submit', handleContactSubmit);
+
+    updateTermStatus();
+    loadDraft();
+    document.getElementById('signatureDate').valueAsDate = new Date();
+  </script>
+</body>
+</html>
