@@ -187,9 +187,24 @@
     </div>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
+ <main id="home">
+  <section class="hero">
+    <div class="container">
+
+      <!-- 🔝 DEADLINE AT TOP -->
+      <div class="card deadline-top">
+        <h3>Application Deadlines</h3>
+        <ul class="deadline-list">
+          <li>Spring term: November 1</li>
+          <li>Summer term: March 15</li>
+          <li>Fall term: May 1</li>
+        </ul>
+      </div>
+
+      <!-- MAIN GRID -->
+      <div class="hero-grid">
+        
+        <!-- LEFT -->
         <div class="card hero-copy">
           <span class="eyebrow">Public Application Portal</span>
           <h1>Apply to the MDWFP Internship Program</h1>
@@ -197,30 +212,19 @@
             Submit your application materials to the Mississippi Department of Wildlife, Fisheries, and Parks.
             This portal is designed for qualified candidates seeking internship opportunities across MDWFP bureaus and regional locations.
           </p>
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="#apply">Start Application</a>
             <a class="btn btn-secondary" href="#information">Program Information</a>
           </div>
-          <div class="notice" role="note">
-            This single-file site is designed for Cloudflare Pages. To make document uploads, admin retention, CSV export, and email notifications fully operational,
-            connect the included form to a backend endpoint such as a Cloudflare Worker + R2/D1, Google Apps Script, or another form service.
+
+          <div class="notice">
+            This portal supports structured internship applications. Documents must be submitted in PDF, DOC, or DOCX format.
           </div>
         </div>
-        <aside class="card hero-side" aria-label="Program details">
-          <div class="logo-slot">
-            <div>
-              <strong>Logo placeholder</strong><br />
-              Replace this section with your MDWFP logo image.
-            </div>
-          </div>
-          <div class="deadline-box">
-            <h3>Application terms</h3>
-            <ul class="deadline-list">
-              <li>Spring term deadline: November 1</li>
-              <li>Summer term deadline: March 15</li>
-              <li>Fall term deadline: May 1</li>
-            </ul>
-          </div>
+
+        <!-- RIGHT -->
+        <aside class="card hero-side">
           <div class="deadline-box">
             <h3>Submission requirements</h3>
             <ul class="check-list">
@@ -231,11 +235,16 @@
             </ul>
             <small>Accepted formats: PDF, DOC, DOCX</small>
           </div>
-          <div class="pill" id="termStatusPill">Current term status: Loading…</div>
-        </aside>
-      </div>
-    </section>
 
+          <div class="pill" id="termStatusPill">
+            Current term status: Loading…
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</main>
     <section id="information">
       <div class="container">
         <div class="section-head">
